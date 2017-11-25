@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300');
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background: #c1bdba;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    width: 100%;
+    background: #13232f;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+.container>div{
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+.container>div.active{
+    opacity: 1;
+}
+.tab-group{
+    width: 90%;
+    margin: 0 auto;
+}
+.tab-group li a{
+    float: left;
+    width: 50%;
+    padding: 15px 0;
+    font-size: 20px;
+    background: rgba(160, 179, 176, 0.25);
+    text-align: center;
+    transition: all .5s;
+    color: #a0b3b0;
+    margin-bottom: 32px;
+}
+.tab-group li.active a{
+    background: #1ab188;
+    color: #ffffff
+}
+.tab-group li a:hover{
+    background: #179b77;
+    color: #ffffff;
+    cursor: pointer;
+}
+.registration{
+    width: 100%;
+}
+.container .fieldWrap input{
+    outline: 0;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 22px;
+    border: 1px solid #a0b3b0;
+    color: #ffffff;
+    background: none;
+    font-weight: 100;
+}
+.container .fieldWrap input:focus{
+    border: 0.5px solid #1ab188;
+    outline: 0;
+}
+.container .fieldWrap{
+    width: 90%;
+    margin-bottom: 32px;
+    position: relative;
+}
+.container .fieldWrap label{
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    padding: 5px 10px;
+    pointer-events: none;
+    top: 0;
+    transition: all .5s;
+}
+.container .fieldWrap label span{
+    color: rgba(255, 35, 35, 0.5);
+}
+.container .fieldWrap label.active{
+    top: 36px;
+    font-size: 16px;
+    color: white;
+}
+.container form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container form .fieldWrap:last-child input{
+    background: #179b77;
+    font-size: 2rem;
+    border: none;
+}
+.container form .fieldWrap:last-child{
+    margin: 0;
+}
+.container h1{
+    width: max-content;
+    margin: 0 auto 32px;
+    color: #ffffff;
+    position: relative;
+}
+.container h1 span{
+    position: absolute;
+    padding: 20px;
+    background: rgba(12, 12, 12, 0.37);
+    font-weight: 100;
+    left: -100%;
+    width: max-content;
+    opacity: 0;
+    transition: opacity .7s;
+}
+.statusRegistration.active{
+    opacity: 1;
+}
+.login .invalid{
+    color: rgb(247, 91, 91);
+    padding: 5px;
+}
+.registration .invalidRegistration{
+    color: rgb(247, 91, 91);
+    padding: 5px;
+}
