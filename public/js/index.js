@@ -13,14 +13,6 @@
             });
         }
     })
-    // var grid = document.querySelector('.grid');
-    // var masonry = new Masonry(grid, {
-    //     itemSelector : '.grid-item',
-    //     // columnWidth: 200,
-    //     horizontalOrder: true,
-    //     //fitWidth: true,
-    //     gutter: 25
-    // });
 
     //MENU
     document.querySelector('aside').addEventListener('click', function(e){
@@ -33,28 +25,30 @@
     });
     //CREATE TASK
     var tasks = new AJAX('http://localhost:4500', '/task');
-    // document.querySelector('.createTask').addEventListener('click', function(e){
-    //     if(e.target.closest('button')){
-    //         var task = {};
-    //         task.subject = this.querySelector('input').value;
-    //         task.text = this.querySelector('textarea').value;
-    //         tasks.post(task, function(res){
-    //             console.log(res)
-    //         })
-    //     }
-    // });
     //GET ALL TASK
     var view = new VIEW();
-    tasks.verificationUser((res) => {
-        var tasks = JSON.parse(res)
-        view.renderList(tasks.task, document.querySelector('.grid'))
-        var grid = document.querySelector('.grid');
-    var masonry = new Masonry(grid, {
-        itemSelector : '.grid-item',
-        // columnWidth: 200,
-        horizontalOrder: true,
-        //fitWidth: true,
-        gutter: 25
-    });
+    
+    document.querySelector('aside').addEventListener('click', function(e){
+        if(e.target.closest('.add-file')){
+            var wrap = document.querySelector('.wrap');
+            wrap.innerHTML = '';
+            view.renderFormCreateTask(wrap, task => {
+                tasks.post(task, res => {
+                    console.log(res)
+                })
+            }); 
+        }else if(e.target.closest('.all-file')){
+            var wrap = document.querySelector('.wrap');
+            wrap.innerHTML = '<img src="/images/procces.gif" alt="" class="iconProccees">'
+            tasks.verificationUser((res) => {
+                var tasks = JSON.parse(res)
+                view.renderList(tasks.task, wrap);
+                var masonry = new Masonry(document.querySelector('.grid'), {
+                itemSelector : '.grid-item',
+                horizontalOrder: true,
+                gutter: 25
+                });
+            })
+        }
     })
 })();

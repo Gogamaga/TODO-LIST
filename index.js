@@ -69,7 +69,7 @@ app.post('/authentication', (req, res) => {
             }else{
                 var cookieVal = cookiern.cookieValue();
                 users.logInUser(result._id, cookieVal); 
-                res.cookie('token', cookieVal, { maxAge : 1000*60*20, httpOnly : true});        
+                res.cookie('token', cookieVal, { maxAge : 1000*60*200, httpOnly : true});        
                 res.setHeader('Location', '/');
                 res.end(); 
             }
@@ -95,13 +95,7 @@ app.delete('/logout', (req, res) => {
     res.end();
 })
 //SAVE TASK
-// app.post('/task', (req, res) => {
-//     var newTask = req.body;
-//     newTask.dateCreate = timeStamp('YYYY/MM/DD/HH:mm:ss');
-//     users.verificationUser(req.cookies.token, (err, result) => {
-//         task.saveTask(result._id, newTask)
-//     })
-// })
+
 app.post('/task', taskRoutes.saveTask);
 
 app.get('/task', taskRoutes.getAllTask);

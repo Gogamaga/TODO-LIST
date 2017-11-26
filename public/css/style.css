@@ -54,6 +54,7 @@ nav>ul>li:last-child span{
     align-items: center;
 }
 nav .infoUser{
+    z-index: 100;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -152,9 +153,21 @@ nav ul li:last-child ul li{
     margin: 0 auto;
     background: #13232f;
     max-width: 600px;
-    padding: 40px;
+    padding: 20px 40px;
     border-radius: 4px;
     box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+.createTask ul{
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+    margin: 0 auto 10px;
+}
+.createTask>ul>li{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: wheat;
 }
 .createTask input, .createTask textarea{
     margin-bottom: 32px;
@@ -177,4 +190,12 @@ nav ul li:last-child ul li{
 .createTask h1{
     color: #ffffff;
     text-align: center;
+}
+/* ICON PROCCES */
+.iconProccees{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
 }

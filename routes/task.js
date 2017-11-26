@@ -11,6 +11,7 @@ module.exports = function TaskRoutes(){
         var newTask = req.body;
         newTask.dateCreate = timeStamp('YYYY/MM/DD/HH:mm:ss');
         newTask.id = shortId.generate();
+        newTask.completed = false;
         users.verificationUser(req.cookies.token, (err, result) => {
             task.saveTask(result._id, newTask)
         })
