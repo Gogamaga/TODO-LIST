@@ -79,10 +79,10 @@ app.post('/authentication', (req, res) => {
 //  Verification User
 app.get('/verification', (req, res) => {
     if(!req.cookies.token){
-        res.send('<li><a href="/login">Log In or Registration</a></li>');
+        res.send( {success : false} );
     }else{
         users.verificationUser(req.cookies.token, (err, result) => {
-            res.send('<span><a href="#">' + result.login.slice(0,1).toUpperCase() + '</a></span><ul class="infoUser"><li>' + result.login + '</li><li  data-email="' + result.email + '">' + result.email + '</li><li></li><li class="logout"><a href="#">Log Out</a></li></ul>')
+            res.send( {success : true, result} )
         })
     }
 })
@@ -97,6 +97,11 @@ app.delete('/logout', (req, res) => {
 //SAVE TASK
 
 app.post('/task', taskRoutes.saveTask);
-
+//GET ALL TASK
 app.get('/task', taskRoutes.getAllTask);
+//DELETE TASK
+app.delete('/task', taskRoutes.deleteTask)
+//EDIT TASK
+app.put('/task', taskRoutes.editTask)
+
 app.listen(4500, () => console.log('Server start'))

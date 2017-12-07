@@ -15,6 +15,7 @@ module.exports = function DATABASE(collectionName){
                 db.collection(collectionName).update({ _id : ObjectId(id)}, {$push : {task : newTask}}, (err, result) => {
                     console.log(err)
                 })
+                db.close();
             }
         })
     };
@@ -25,6 +26,26 @@ module.exports = function DATABASE(collectionName){
                 db.collection(collectionName).findOne({ _id : ObjectId(id)}, { task : true, _id : false}, (err, res) => {
                     callback(err, res)
                 })
+            }
+        })
+    };
+    this.deleteTask = (userId, taskId, callback) => {
+        connectDB((err, db) => {
+            if(err)console.log(err);
+            else{
+                db.collection(collectionName).update({ _id : ObjectId(userId)}, 
+                {$pull : { task : { id : taskId}}}, (err, res) => {
+                    callback(err, res)
+                })
+            }
+        })
+    };
+    this.editTask = (userId, taskId, objUpdate) => {
+        connectDB((err, db) => {
+            if(err)console.log(err);
+            else{
+                db.collection(collectionName).update({ _id : ObjectId(userId), 
+                    task : {$elemMatch: {id : taskId}}}, {$set : { 'task.$.completed' : objUpdate}})
             }
         })
     }

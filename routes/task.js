@@ -15,6 +15,7 @@ module.exports = function TaskRoutes(){
         users.verificationUser(req.cookies.token, (err, result) => {
             task.saveTask(result._id, newTask)
         })
+        res.end();
     };
     this.getAllTask = (req, res) => {
         users.verificationUser(req.cookies.token, (err, result) => {
@@ -23,4 +24,21 @@ module.exports = function TaskRoutes(){
             })
         })
     };
+    this.deleteTask = (req, res) => {
+        users.verificationUser(req.cookies.token, (err, result) => {
+            task.deleteTask(result._id, req.body.taskId, (err, result) => {
+                if(err)console.log(err);
+                else{
+                    res.send(result)
+                }
+            })
+        })
+    };
+    this.editTask = (req, res) => {
+        console.log(req.body)
+        users.verificationUser(req.cookies.token, (err, result) => {
+            task.editTask(result._id, req.body.taskId, req.body.completed)
+        })
+        res.end();
+    }
 }

@@ -11,27 +11,29 @@
     <header>
         <nav>
             <ul>
-                <li class="logo"><img src="images/logo.png" alt="logo"></li>
+                <li class="logo"><img src="images/icons8-address-book-64.png" alt="logo"></li>
                 <li>
                 </li>
             </ul>
         </nav>
     </header>
-    <div class="container">
-        
+    <div class="container">       
         <aside>
             <img src="/images/icons8-settings-100.png" alt="" class="setting">
-            <img src="/images/icons8-file-100.png" alt="" class="all-file">
-            <img src="/images/icons8-check-file-100.png" alt="" class="check-file">
-            <img src="/images/icons8-delete-file-100.png" alt="" class="not-complete">
-            <img src="/images/icons8-add-file-100.png" alt="" class="add-file">
+            <div class="all-file">
+                <img src="/images/icons8-file-100.png" alt=""  data-tooltip="Show all task">
+            </div>
+            <img src="/images/icons8-check-file-100.png" alt="" class="check-file" data-tooltip="Show completed task">
+            <img src="/images/icons8-delete-file-100.png" alt="" class="not-complete" data-tooltip="Show not completed">
+            <img src="/images/icons8-add-file-100.png" alt="" class="add-file" data-tooltip="Create new task">
         </aside>
         <div class="wrap">
-           
         </div>
     </div>
+    <span class="tooltip"></span>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="js/view.js"></script>
+    <script src="js/requestTask.js"></script>
+    <script src="js/view.js"></script>    
     <script src="js/ajax.js"></script>
     <script src="js/index.js"></script>
 </body>

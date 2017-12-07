@@ -53,7 +53,7 @@ nav>ul>li:last-child span{
     justify-content: center;
     align-items: center;
 }
-nav .infoUser{
+nav .infoUser.active{
     z-index: 100;
     position: absolute;
     display: flex;
@@ -62,12 +62,23 @@ nav .infoUser{
     padding: 0;
     right: calc(100% - 50px);
     top: 50px;
+    background: white;
     -webkit-box-shadow: 0px 7px 20px -1px rgba(140,140,140,1);
     -moz-box-shadow: 0px 7px 20px -1px rgba(140,140,140,1);
     box-shadow: 0px 7px 20px -1px rgba(140,140,140,1);
 }
+nav .infoUser{
+    display: none;
+}
 nav ul li:last-child ul li{
     padding: 15px;
+}
+.wrap{
+    height: 100%;
+    overflow-y: scroll;
+}
+.wrap::-webkit-scrollbar{
+    width: 0;
 }
 .grid{
     width: 75%;
@@ -82,6 +93,12 @@ nav ul li:last-child ul li{
     -moz-box-shadow: 0px 7px 20px -1px rgba(140,140,140,1);
     box-shadow: 0px 7px 20px -1px rgba(140,140,140,1);
 }
+.grid-item .imgSettingTask{
+    position: absolute;
+    left: calc(100% - 35px);
+    width: 30px;
+    top: 5px;
+}
 .grid-item h3{
     margin-bottom: 20px;
 }
@@ -91,9 +108,11 @@ nav ul li:last-child ul li{
     display: block;
     margin-top: 20px;
 }
+
 .container{
    position: relative;
    padding: 20px;
+   height: calc(100% - 50px);
 }
 .container aside{
     position: absolute;
@@ -113,6 +132,7 @@ nav ul li:last-child ul li{
     cursor: pointer;
     margin-bottom: 25px;
 }
+
 .container aside .all-file{
     right: 70px;
     width: 50px;
@@ -145,7 +165,7 @@ nav ul li:last-child ul li{
 {
     right: 0;
 }
-/* CREATE TEXT */
+/* CREATE TASK */
 .createTask{
     display: flex;
     flex-direction: column;
@@ -198,4 +218,81 @@ nav ul li:last-child ul li{
     position: absolute;
     left: 50%;
     top: 50%;
+}
+/* TOOLTIP */
+span.tooltip{
+    position: absolute;
+    background: rgba(121, 121, 121, 0.548);
+    padding: 5px;
+    z-index: 100;
+    display: none;
+}
+/* Setting Task */
+.test{
+    width: 0;
+    height: 0;
+    transform: scale(0.1);
+    position: absolute;
+    left: 65%;
+    top: 70px;
+    display: none;
+}
+.test .circle{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: relative;
+    top: -30px;
+    left: -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.test img{
+    width: 40px;
+    position: absolute;
+    transition: .4s;
+}
+.test img:first-child{
+    top: -20px;
+    z-index: 10;
+}
+.test img:nth-child(2){
+    top: 20px;
+    right: 37px;
+    z-index: 10;
+}
+.test img:nth-child(3){
+    width: 160px;
+}
+.test img:last-child{
+    top: 20px;
+    left: 37px;
+    z-index: 10;
+}
+.test.active{
+    display: block;
+    animation: wrapSettingTask .3s linear;
+    animation-fill-mode: forwards; 
+    
+}
+@keyframes wrapSettingTask{
+    10%{transform: scale(.2)}
+    50%{transform: scale(.5)}
+    100%{transform: scale(1)}
+}
+@keyframes imgRound{
+    0%{transform: rotate(0deg)}
+    25%{transform: rotate(90deg)}
+    50%{transform: rotate(180deg)}
+    75%{transform: rotate(270deg)}
+    100%{transform: rotate(355deg)}
+}
+
+.test img:nth-child(3).active{
+    animation: imgRound 1s infinite linear;
+}
+.test img:not(:nth-child(3)),
+.grid-item .imgSettingTask:hover{
+    cursor: pointer;
 }
